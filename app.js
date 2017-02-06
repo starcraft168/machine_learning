@@ -15,29 +15,33 @@ Let m be the number of training samples
 Goal is to continuously train the sample until the parameters converge.
 */
 
-var gradientDescent = function(input_array, alpha, params) {
+var gradientDescent = function(input_array, alpha, params, iterations) {
 	var m = input_array.length;
 	var a0 = params[0];
 	var a1 = params[1];
 
-	// a1 = a1 - alpha*(1/m)*()
+	var j = 0;
+	while(j < iterations) {
+		var cost_a0 = 0;
+		var cost_a1 = 0;
 
-	var sum = 0;
-	var cost_a0 = 0;
-	var cost_a1 = 0;
-	//iterate through the training sample 
-	for(var i=0; i<m; i++) {
-		var xi = input_array[i][0];
-		var yi = input_array[i][1];
-		var cost_a0 = (1/m)*(a0+a1*xi-yi)
-		var cost_a1 = (1/m)*(a0+a1*xi-yi)*xi
+		//iterate through the training sample 
+		for(var i=0; i<m; i++) {
+			var xi = input_array[i][0];
+			var yi = input_array[i][1];
+			cost_a0 += (1/m)*(a0+a1*xi-yi)
+			cost_a1 += (1/m)*(a0+a1*xi-yi)*xi
+		}
+
+
 		a0 = a0 - alpha*cost_a0;
 		a1 = a1 - alpha*cost_a1;
-		// sum += 
+		j++;
 	}
 
-}
 
-var updateParams = function() {
+
+	var results = [a0,a1];
+	return results;
 
 }
