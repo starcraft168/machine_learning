@@ -8,7 +8,7 @@ h(x) = a0 + a1*x
 
 Let alpha be the learning rate = 0.1
 Let params = [-20,10], a random vector of parameters
-Let input_array = [[2104, 460], [1416,232], [1534, 315], [852,178]]
+Let input_array = [[852,178],[1534,315],[1416,232],[2104,460]]
 Let m be the number of training samples
 
 
@@ -30,7 +30,9 @@ var gradientDescent = function(input_array, alpha, params, iterations) {
 			var xi = input_array[i][0];
 			var yi = input_array[i][1];
 			cost_a0 += (1/m)*(a0+a1*xi-yi)
+         console.log(cost_a0)
 			cost_a1 += (1/m)*(a0+a1*xi-yi)*xi
+         console.log(cost_a1)
 		}
 
 
@@ -39,9 +41,13 @@ var gradientDescent = function(input_array, alpha, params, iterations) {
 		j++;
 	}
 
-
-
 	var results = [a0,a1];
 	return results;
-
 }
+
+var input_array = [[852,178],[1534,315],[1416,232],[2104,460]];
+var alpha = 0.00000001;
+var params = [20,5];
+var iterations = 5;
+
+console.log(gradientDescent(input_array, alpha, params, iterations));
